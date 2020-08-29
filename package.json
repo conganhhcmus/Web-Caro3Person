@@ -1,0 +1,28 @@
+{
+  "name": "web-caro3person",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/conganhhcmus/Web-Caro3Person.git"
+  },
+  "author": "conganhhcmus@gmail.com - levananh@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/conganhhcmus/Web-Caro3Person/issues"
+  },
+  "homepage": "https://github.com/conganhhcmus/Web-Caro3Person#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
