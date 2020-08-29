@@ -30,8 +30,9 @@ module.exports.listen = function (server) {
             let Col = data.x / boxSize;
             let Row = data.y / boxSize;
             let value = userIndex + 1;
-            if (userIndex === Turn + 1) {
+            if (userIndex === (Turn + 1 > 2 ? 0 : Turn + 1)) {
                 Turn = Turn + 1 > 2 ? 0 : Turn + 1;
+                console.log(Turn);
                 if (Board[Row][Col] === 0) {
                     Board[Row][Col] = value;
                     io.sockets.emit("data", {
