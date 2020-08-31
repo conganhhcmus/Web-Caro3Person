@@ -3,6 +3,7 @@ const gameModel = require("./../models/gameModel");
 
 exports.index = async function (req, res) {
     let data = await gameModel.getById(1);
-    console.log(data);
+    
+    // console.log(await gameModel.getById(1));
     res.render("game");
 };

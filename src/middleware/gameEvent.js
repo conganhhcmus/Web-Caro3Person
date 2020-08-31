@@ -9,8 +9,8 @@ var Turn = -1;
 var Board = gameUtils.board(height, width, 0);
 
 exports.gameInit = async function () {
-    // await gameModel.create(Board, Turn);
-    // console.log("Create Game");
+    // await gameModel.create(gameUtils.boardToString(height, width, Board), Turn);
+    console.log("Create Game");
 };
 
 exports.gameSocket = function (io) {
@@ -48,12 +48,9 @@ exports.gameSocket = function (io) {
                         value: value,
                     });
                 }
-                // gameModel.update(Board, Turn, 1);
-                // console.log(Board);
-                console.log(gameUtils.boardToString(height, width, Board));
+
+                gameModel.update(1, gameUtils.boardToString(height, width, Board), Turn);
             }
-            // console.log(Board);
-            
         });
     });
 };

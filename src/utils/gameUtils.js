@@ -22,4 +22,21 @@ module.exports = {
         }
         return res;
     },
+
+    stringToBoard: (h, w, str) => {
+        let matrix = [];
+        let arr = str.split(" ");
+        let k = 0;
+
+        for (let i = 0; i < h; i++) {
+            a = [];
+            for (let j = 0; j < w; j++) {
+                // console.log("k:" + k + "\t value: " + arr[k]);
+                a[j] = arr[k];
+                k++;
+            }
+            matrix[i] = a;
+        }
+        return matrix;
+    },
 };

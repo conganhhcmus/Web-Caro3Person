@@ -51,12 +51,13 @@ module.exports = {
     },
 
     getById: async (id) => {
-        const queryText = `SELECT * FROM ${tbName}  WHERE ID = $1`;
-        await db.query(queryText, [id], (error, results) => {
+        const queryText = `SELECT * FROM ${tbName} WHERE ID = $1`;
+        await db.query(queryText, [parseInt(id)], (error, results) => {
             if (error) {
                 // console.error(error);
                 throw error;
             }
+            // console.log(results.rows);
             return results.rows;
         });
     },

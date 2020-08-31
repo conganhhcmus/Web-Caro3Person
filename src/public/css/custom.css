@@ -1,8 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 body {
-    background-color: #79cdcd;
+    font-family: 'Roboto', sans-serif;
+    background-color: #dedede;
+    margin: 20px;
 }
+.card-style {
+    display: block;
+    background-color: #fff;
+    /* height: 100px;
+    width: 350px; */
+    /* margin: 20px 0px; */
+    box-shadow: 1px 1px 8px #999;
+    cursor: pointer;
+}
+.card-img {
+    height: 100px;
+    width: 100px;
+}
+.media-heading {
+    margin-top: 10px;
+    color: #444;
+}
+.media-heading:hover, a:link {
+    color: #00C853;
+    text-decoration: none;
+}
+.members {
+    margin-top: 20px;
+    color: #999;
+    float: left;
+ }
+ .btn-part {
+     display: inline-block;
+     margin: 10px;
+     float: right;
+ }
+ .badge {
+     display: inline-block;
+     background: #00C853;
+     float: right;
+     padding: 7px;
+     border-radius: 50px;
+     margin: 10px;
+ }
 
 #room {
+    background-color: #79cdcd;
     padding: 0;
     margin: 0;
     display: flex;
@@ -37,3 +80,57 @@ body {
 #message-input {
     flex-grow: 1;
 } */
+
+
+
+
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
