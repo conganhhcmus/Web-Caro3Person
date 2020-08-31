@@ -1,5 +1,6 @@
-const gameUtils = require("./../utils/gameUtils");
-const variableConfig = require("./../config/variableConfig");
+const gameUtils = require("../utils/gameUtils");
+const variableConfig = require("../config/variableConfig");
+const gameModel = require("./../models/gameModel");
 const width = variableConfig.WIDTH;
 const height = variableConfig.HEIGHT;
 const boxSize = variableConfig.BOX_SIZE;
@@ -7,15 +8,16 @@ var Users = [];
 var Turn = -1;
 var Board = gameUtils.board(height, width, 0);
 
-module.exports.listen = function (server) {
-    var io = require("socket.io")(server);
+exports.gameInit = async function () {
+    // await gameModel.create(Board, Turn);
+    // console.log("Create Game");
+};
 
+exports.gameSocket = function (io) {
     io.on("connection", function (socket) {
-        // code here
-        console.log("UserId Connected:" + socket.id);
-
         // event register user
         socket.on("register-user", function (data) {
+            // console.log(socket.id);
             if (Users.length < 3) {
                 Users.push(data);
                 socket.Username = data;
@@ -32,7 +34,8 @@ module.exports.listen = function (server) {
             let value = userIndex + 1;
             if (userIndex === (Turn + 1 > 2 ? 0 : Turn + 1)) {
                 Turn = Turn + 1 > 2 ? 0 : Turn + 1;
-                console.log(Turn);
+                // console.log("Turn" + Turn);
+
                 if (Board[Row][Col] === 0) {
                     Board[Row][Col] = value;
                     io.sockets.emit("data", {
@@ -45,9 +48,12 @@ module.exports.listen = function (server) {
                         value: value,
                     });
                 }
+                // gameModel.update(Board, Turn, 1);
+                // console.log(Board);
+                console.log(gameUtils.boardToString(height, width, Board));
             }
             // console.log(Board);
+            
         });
     });
-    return io;
 };

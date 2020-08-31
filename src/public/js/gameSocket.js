@@ -1,4 +1,3 @@
-let socket = io();
 const boxSize = 50;
 const width = 10;
 const height = 10;
@@ -9,7 +8,11 @@ const div = d3
     .append("div")
     .attr("id", "content")
     .style("text-align", "center");
-const svg = div.append("svg").attr("width", 500).attr("height", 600);
+
+const svg = div
+    .append("svg")
+    .attr("width", width * boxSize)
+    .attr("height", height * boxSize);
 
 // draw board and send turn
 for (let i = 0; i < height; i++) {
@@ -34,6 +37,18 @@ for (let i = 0; i < height; i++) {
         box.attr("fill", "white");
     }
 }
+
+// load data
+// svg.append("text")
+//     .attr("x", parseInt(data.x))
+//     .attr("y", parseInt(data.y))
+//     .attr("text-anchor", "middle")
+//     .attr("dx", boxSize / 2)
+//     .attr("dy", boxSize / 2 + 8)
+//     .text(icon[data.userId])
+//     .style("font-weight", "bold")
+//     .style("font-size", "30px")
+//     .style("fill", color[data.userId]);
 
 // socket and event
 socket.on("list-user", function (data) {
@@ -70,15 +85,6 @@ socket.on("disable-click", function () {
 // get data from server
 
 socket.on("data", function (data) {
-    // console.log("gia tri ma client nhan tu server:");
-    // console.log("mang nguoi choi :" + data.ArrId);
-    // console.log("Id:" + data.name);
-    // console.log("nguoi cho thu:", data.userId);
-    // console.log("Ma tran cac nuoc di:", data.Board);
-    // console.log("Gia tri cua nguoi choi:" + data.value);
-    // console.log("x_client:" + data.x);
-    // console.log("y_client:" + data.y);
-
     svg.append("text")
         .attr("x", parseInt(data.x))
         .attr("y", parseInt(data.y))
