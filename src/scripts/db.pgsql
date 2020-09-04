@@ -9,7 +9,10 @@ create table GAME
 create table ACCOUNT
 (
     ID   SERIAL PRIMARY KEY NOT NULL,
-    NAME TEXT
+    NAME TEXT,
+    USER_NAME TEXT,
+    PASS_WORD TEXT,
+    JOIN_DATE DATE
 );
 
 create table ROOM
@@ -25,5 +28,10 @@ create table ROOM
     JOIN_DATE  DATE
 );
 
+create table VARIABLE
+(
+    GUESTS INT
 
-drop table GAME, ACCOUNT, ROOM;
+);
+
+drop table GAME, ACCOUNT, ROOM, VARIABLE;

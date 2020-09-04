@@ -5,7 +5,6 @@ module.exports = {
         const saltRounds = 10;
         let salt = bcrypt.genSaltSync(saltRounds);
         let pwHash = bcrypt.hashSync(password, salt);
-
         return pwHash;
     },
 

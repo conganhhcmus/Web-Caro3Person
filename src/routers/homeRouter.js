@@ -1,6 +1,6 @@
 const express = require("express");
 const homeController = require("../controllers/homeController");
-const roomValidate = require("./../middleware/roomValidate");
+// const roomEvent = require("./../middleware/roomEvent");
 
 module.exports = function (io) {
     let router = express.Router();
@@ -11,11 +11,13 @@ module.exports = function (io) {
     };
 
     router.get("/", socketTransmission, homeController.home);
-    router.post(
-        "/room",
-        socketTransmission,
-        roomValidate.check,
-        homeController.createRoom
-    );
+
+    router.post("/room", socketTransmission, homeController.createRoom);
+
+    router.post("/login", socketTransmission, homeController.login);
+
+    router.post("/register", socketTransmission, homeController.register);
+
+    router.post("/checkUser", socketTransmission, homeController.checkUser);
     return router;
 };

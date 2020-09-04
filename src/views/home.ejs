@@ -22,7 +22,7 @@
 
 
 
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src=" socket.io/socket.io.js"></script>
     <script src='https://d3js.org/d3.v4.min.js'></script>
 
@@ -44,14 +44,14 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default">Search</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <p class="navbar-text">Already have an account?</p>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span
+                        <a id="login" href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span
                                 class="caret"></span></a>
                         <ul id="login-dp" class="dropdown-menu">
                             <li>
@@ -60,25 +60,26 @@
                                         Login via
                                         <div class="social-buttons">
                                             <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-                                            <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                            <a href="#" class="btn btn-tw"><i class="fa fa-google"></i> Google</a>
                                         </div>
-                                        or
-                                        <form class="form" role="form" method="post" action="login"
-                                            accept-charset="UTF-8" id="login-nav">
+                                        
+                                        <div class="form-group"> or </div>
+                                        <form class="form" role="form" accept-charset="UTF-8" id="login-nav" action="javascript:login();">
                                             <div class="form-group">
-                                                <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail2"
-                                                    placeholder="Email address" required>
+                                                <label class="sr-only" for="inputUsername">Username</label>
+                                                <input type="text" class="form-control" id="loginUsername"
+                                                    placeholder="Username" required>
                                             </div>
                                             <div class="form-group">
-                                                <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword2"
+                                                <label class="sr-only" for="inputPassword">Password</label>
+                                                <input type="password" class="form-control" id="loginPassword"
                                                     placeholder="Password" required>
                                                 <div class="help-block text-right"><a href="">Forget the password ?</a>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                                <button type="submit" class="btn btn-primary btn-block" id="signIn">Sign
+                                                    in</button>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
@@ -88,7 +89,46 @@
                                         </form>
                                     </div>
                                     <div class="bottom text-center">
-                                        New here ? <a href="#"><b>Join Us</b></a>
+                                        New here ? <a href="javascript:document.getElementById('register').click()"><b>Register</b></a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a id="register" href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Register</b> <span
+                                class="caret"></span></a>
+                        <ul id="register-dp" class="dropdown-menu">
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">Register</div>
+                                        
+                                        <form class="form" role="form" accept-charset="UTF-8" id="register-nav" action="javascript:register();">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="inputUsername">Username</label>
+                                                <input type="text" class="form-control" id="registerUsername"
+                                                    placeholder="Username" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="inputPassword">Password</label>
+                                                <input type="password" class="form-control" id="registerPassword"
+                                                    placeholder="Password" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="inputPassword">Password</label>
+                                                <input type="password" class="form-control" id="registerConfirmPassword"
+                                                    placeholder="Confirm Password" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary btn-block" id="signUp">Sign
+                                                    up</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="bottom text-center">
+                                        Have an account? <a href="javascript:document.getElementById('login').click()"><b>Login</b></a>
                                     </div>
                                 </div>
                             </li>
@@ -103,10 +143,19 @@
             <div class="col-md-3">
             </div>
             <div class="col-md-6">
+                <div class="text-center">
+                    <form action="/room" method="POST">
+                        <input name="room" type="text" required>
+                        <button type="submit">New Room</button>
+                    </form>
+                </div>
+                <!-- show room -->
                 <div class="panel panel-default">
                     <div class="panel-heading text-left">
                         <div class="row center-block">
-                            <div class="col-md-8 text-left"><h4>#123 - CHUNG KET C1 ( 2/3 player )</h4></div>
+                            <div class="col-md-8 text-left">
+                                <h4>#123 - CHUNG KET C1 ( 2/3 player )</h4>
+                            </div>
                             <div class="col-md-2 align-self-stretch text-center">Lock</div>
                             <div class="col-md-2 text-right"><a href="#" class="btn btn-primary">JOIN</a></div>
                         </div>
@@ -127,10 +176,6 @@
                             </div>
 
                         </div>
-                        <!-- <h5 class="panel-title">#Room 123</h5> -->
-                        <!-- <p class="panel-text">( 2/3 player )</p> -->
-                        <!-- <p class="panel-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary pull-right">JOIN</a> -->
                     </div>
                 </div>
 
@@ -151,8 +196,8 @@
         <input name="room" type="text" required>
         <button type="submit">New Room</button>
     </form> -->
-        <!-- <script src="/js/utils.js"></script>
-    <script src="/js/roomSocket.js"></script> -->
+        <script src="/js/utils.js"></script>
+    <!-- <script src="/js/roomSocket.js"></script> -->
 
 </body>
 
