@@ -10,7 +10,7 @@ var Board = gameUtils.board(height, width, 0);
 
 exports.gameInit = async function () {
     // await gameModel.create(gameUtils.boardToString(height, width, Board), Turn);
-    console.log("Create Game");
+    // console.log("Create Game");
 };
 
 exports.gameSocket = function (io) {
@@ -49,7 +49,17 @@ exports.gameSocket = function (io) {
                     });
                 }
 
-                gameModel.update(1, gameUtils.boardToString(height, width, Board), Turn);
+                gameModel.update(
+                    1,
+                    gameUtils.boardToString(height, width, Board),
+                    Turn
+                );
+
+                // check win/lose
+                if (gameUtils.checkWinLose(Board, Row, Col)) {
+                    io.emit("win-lose", Users[Turn]);
+                    io.emit("disable-click");
+                }
             }
         });
     });

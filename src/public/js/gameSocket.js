@@ -96,3 +96,10 @@ socket.on("data", function (data) {
         .style("font-size", "30px")
         .style("fill", color[data.userId]);
 });
+
+socket.on("win-lose", function (data) {
+    let winner = document.getElementById("winner");
+    winner.innerHTML =
+        "Người thắng là: " +
+        `<span style="background-color:yellow">${data}</span>`;
+});
