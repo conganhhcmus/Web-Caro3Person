@@ -46,9 +46,16 @@
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>
-                <ul class="nav navbar-nav navbar-right">
+                <ul id="content" class="nav navbar-nav navbar-right">
+                    <% if (user) { %>
                     <li>
-                        <p class="navbar-text">Already have an account?</p>
+                        <p id="username" class="navbar-text"><%= user.name %></p>
+                    </li>
+                    <li><a href="/logout"><b>Logout</b></a></li>
+
+                    <% } else { %>
+                    <li>
+                        <p id="username" class="navbar-text">Already have an account?</p>
                     </li>
                     <li class="dropdown">
                         <a id="login" href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span
@@ -62,9 +69,10 @@
                                             <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
                                             <a href="#" class="btn btn-tw"><i class="fa fa-google"></i> Google</a>
                                         </div>
-                                        
+
                                         <div class="form-group"> or </div>
-                                        <form class="form" role="form" accept-charset="UTF-8" id="login-nav" action="javascript:login();">
+                                        <form class="form" role="form" accept-charset="UTF-8" id="login-nav"
+                                            action="javascript:login();">
                                             <div class="form-group">
                                                 <label class="sr-only" for="inputUsername">Username</label>
                                                 <input type="text" class="form-control" id="loginUsername"
@@ -89,7 +97,8 @@
                                         </form>
                                     </div>
                                     <div class="bottom text-center">
-                                        New here ? <a href="javascript:document.getElementById('register').click()"><b>Register</b></a>
+                                        New here ? <a
+                                            href="javascript:document.getElementById('register').click()"><b>Register</b></a>
                                     </div>
                                 </div>
                             </li>
@@ -103,8 +112,9 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">Register</div>
-                                        
-                                        <form class="form" role="form" accept-charset="UTF-8" id="register-nav" action="javascript:register();">
+
+                                        <form class="form" role="form" accept-charset="UTF-8" id="register-nav"
+                                            action="javascript:register();">
                                             <div class="form-group">
                                                 <label class="sr-only" for="inputUsername">Username</label>
                                                 <input type="text" class="form-control" id="registerUsername"
@@ -120,7 +130,7 @@
                                                 <input type="password" class="form-control" id="registerConfirmPassword"
                                                     placeholder="Confirm Password" required>
                                             </div>
-                                            
+
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-primary btn-block" id="signUp">Sign
                                                     up</button>
@@ -128,12 +138,17 @@
                                         </form>
                                     </div>
                                     <div class="bottom text-center">
-                                        Have an account? <a href="javascript:document.getElementById('login').click()"><b>Login</b></a>
+                                        Have an account? <a
+                                            href="javascript:document.getElementById('login').click()"><b>Login</b></a>
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </li>
+                    <li><a style="display: none;" id="logout" href="/logout"><b>Logout</b></a></li>
+                    <% } %>
+
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -197,7 +212,7 @@
         <button type="submit">New Room</button>
     </form> -->
         <script src="/js/utils.js"></script>
-    <!-- <script src="/js/roomSocket.js"></script> -->
+        <!-- <script src="/js/roomSocket.js"></script> -->
 
 </body>
 

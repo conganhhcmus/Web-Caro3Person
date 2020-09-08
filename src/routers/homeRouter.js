@@ -12,6 +12,8 @@ module.exports = function (io) {
 
     router.get("/", socketTransmission, homeController.home);
 
+    router.get("/logout", socketTransmission, homeController.logout);
+
     router.post("/room", socketTransmission, homeController.createRoom);
 
     router.post("/login", socketTransmission, homeController.login);

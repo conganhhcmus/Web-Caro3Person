@@ -3,25 +3,22 @@ const passport = require("passport");
 const userModel = require("./../models/userModel");
 
 passport.serializeUser((user, done) => {
-    done(null, user.ID);
+    done(null, user.id);
 });
 
 passport.deserializeUser(async function (id, done) {
     const user = await userModel.getById(id);
-    done(null, user);
+    done(null, user[0]);
 });
 
 module.exports = function (passport) {
     passport.use(
-        "login",
-        new LocalStrategy((username, password, done) => {
+        new LocalStrategy(async (username, password, done) => {
             //aaa
-        })
-    );
-    passport.use(
-        "signup",
-        new LocalStrategy((username, password, done) => {
-            //aaa
+            let user = await userModel.getUser(username);
+            let check = await hash.compareHash(password, user[0].pass_word);
+            if (check) return done(null, user[0]);
+            else return null, false;
         })
     );
 };
