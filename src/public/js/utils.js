@@ -26,11 +26,16 @@ function login() {
         .then(function (response) {
             // change view
             console.log(response);
-            document.getElementById("username").innerHTML = response.data.name;
-            document.getElementById("login").click();
-            document.getElementById("login").style.display = "none";
-            document.getElementById("register").style.display = "none";
-            document.getElementById("logout").style.display = "block";
+            if (response.data == false) {
+                alert("Login fail!");
+            } else {
+                document.getElementById("username").innerHTML = response.data.name;
+                document.getElementById("login").click();
+                document.getElementById("login").style.display = "none";
+                document.getElementById("register").style.display = "none";
+                document.getElementById("logout").style.display = "block";
+            }
+            
         })
         .catch(function (error) {
             // show error
@@ -93,6 +98,17 @@ function register() {
         .then(function (response) {
             // change view
             console.log(response);
+            if (response.data == false) {
+                alert("Register fail!");
+            }
+            else {
+                document.getElementById("username").innerHTML = response.data.name;
+                document.getElementById("register").click();
+                document.getElementById("login").style.display = "none";
+                document.getElementById("register").style.display = "none";
+                document.getElementById("logout").style.display = "block";
+            }
+            
         })
         .catch(function (error) {
             // show error

@@ -31,13 +31,15 @@ exports.login = async function (req, res) {
     // console.log(check);
     // if (check) res.send(user[0]);
     // else res.send("login fail");
-
-    req.logIn(user[0], function (err) {
-        if (err) {
-            return res.send("login fail");
-        }
-        return res.send(user[0]);
-    });
+    if (!check) res.send("false");
+    else {
+        req.logIn(user[0], function (err) {
+            if (err) {
+                return res.send("false");
+            }
+            return res.send(user[0]);
+        });
+    }
 };
 
 exports.register = async function (req, res) {
@@ -51,7 +53,7 @@ exports.register = async function (req, res) {
         if (err) {
             return res.send("false");
         }
-        return res.send("true");
+        return res.send(user[0]);
     });
 };
 
